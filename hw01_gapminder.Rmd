@@ -58,6 +58,12 @@ for (continent in unique(gapminder$continent))
 
 This provides some interesting results. The country with the lowest life expectancy is `r gapminder$country[which.min(gapminder$lifeExp)]` in the year `gapminder$year[which.min(gapminder$lifeExp)]`. The country with the highest life expectancy is `r gapminder$country[which.max(gapminder$lifeExp)]` in the year `r gapminder$year[which.max(gapminder$lifeExp)]`.
 
+We can also look at a simple histogram of the life expectancies.
+
+```{r}
+hist(gapminder$lifeExp, xlab = "Life Expectancy (years)", main = "Histogram of Life Expectancy")
+```
+
 ### Overview of Oceania
 
 Now, I will look at Oceania in particuar and take a look at some statistics for countries in Oceania.

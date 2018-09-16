@@ -196,6 +196,14 @@ for (continent in unique(gapminder$continent))
 
 This provides some interesting results. The country with the lowest life expectancy is Rwanda in the year `gapminder$year[which.min(gapminder$lifeExp)]`. The country with the highest life expectancy is Japan in the year 2007.
 
+We can also look at a simple histogram of the life expectancies.
+
+``` r
+hist(gapminder$lifeExp, xlab = "Life Expectancy (years)", main = "Histogram of Life Expectancy")
+```
+
+![](hw01_gapminder_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
 ### Overview of Oceania
 
 Now, I will look at Oceania in particuar and take a look at some statistics for countries in Oceania.
