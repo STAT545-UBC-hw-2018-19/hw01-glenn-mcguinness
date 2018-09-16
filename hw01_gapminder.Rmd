@@ -1,0 +1,84 @@
+---
+title: "STAT 545A - Homework 1 Gapminder Exploration"
+output: 
+    github_document:
+        toc: true
+---
+
+## Introduction
+
+In this document I will be performing a brief exploration of the gapminder dataset, while using some R markdown features.
+
+## Gapminder Exploration
+
+### Overview and Summary Statistics
+
+First, I will install the dataset.
+
+```{r}
+library(gapminder)
+```
+
+Now, I will check the size. If it is small enough, I will look at the contents of the data frame.
+
+```{r}
+print(colnames(gapminder))
+print(nrow((gapminder)))
+```
+
+I can not reasonable print 'r nrow(gapminder)' columns, so I will instead look at some interesting subsets of the data. First, I will get an idea of the structure.
+
+```{r}
+# Here, we will take a look at different subsets of the table
+# This is a handy way to get an idea of what the table contains
+# The structure is less readable, but gives the precise types, which can be important.
+# For example, knowing if a field is a double or an integer can be important.
+head(gapminder)
+tail(gapminder)
+str(gapminder)
+```
+
+Now we can get some summary statistics.
+
+```{r, echo=FALSE}
+summary(gapminder)
+```
+
+
+Now, let's look at the summary statistics for each continent individually.
+
+```{r}
+# We will iterate throught the different continents and print the summary
+# It is not necessary to save this to a variable, but 
+for (continent in unique(gapminder$continent))
+{
+  print(summary(gapminder[gapminder$continent == continent,]))
+}
+```
+
+This provides some interesting results. The country with the lowest life expectancy is `r gapminder$country[which.min(gapminder$lifeExp)]` in the year `gapminder$year[which.min(gapminder$lifeExp)]`. The country with the highest life expectancy is `r gapminder$country[which.max(gapminder$lifeExp)]` in the year `r gapminder$year[which.max(gapminder$lifeExp)]`.
+
+### Overview of Oceania
+
+Now, I will look at Oceania in particuar and take a look at some statistics for countries in Oceania.
+
+```{r, echo=FALSE}
+# I will create a subset for Oceania. This section will not be echoed, as it does not add to the document clarity
+gapminderOceania = gapminder[which(gapminder["continent"] == "Oceania"),]
+```
+
+The countries in Oceania are:
+```{r}
+print(unique(gapminderOceania$country))
+```
+
+For the experience, I will calculate a simple statistic, manually. I will caluclate the sample variance of the life expectancy, using the formula $$ S^2 = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (X_i - \bar{X})^2$$ and utilizing the vectorization feature of R.
+
+```{r}
+print("Variance")
+sum((gapminderOceania$lifeExp - mean(gapminderOceania$lifeExp))^2)
+```
+
+## Conclusion
+
+In this document, we briefly reviewed the gapminder dataset provided by the gapminder library. We observed some summary stastics of the entire population and then some subsets of interest. This provided the opportunity to use some features of R markdown to provide a clear and re-usable view of the data.
