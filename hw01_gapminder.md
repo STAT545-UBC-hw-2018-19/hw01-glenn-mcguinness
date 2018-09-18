@@ -204,6 +204,16 @@ hist(gapminder$lifeExp, xlab = "Life Expectancy (years)", main = "Histogram of L
 
 ![](hw01_gapminder_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
+We can see that this is not normally distributed and may be bimodal. This could be due to differences by year. To check this, we can look at how life expectancy changes by year.
+
+``` r
+boxplot(gapminder$lifeExp~gapminder$year, main  = "Life Expectancy by Year", xlab = "Year", ylab = "Life Expectancy (years)")
+```
+
+![](hw01_gapminder_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+We can see that there is a clear increase in life expectancy by year. This is an obvious confounding variable in our analysis of life expectancy by continent.
+
 ### Overview of Oceania
 
 Now, I will look at Oceania in particuar and take a look at some statistics for countries in Oceania.
